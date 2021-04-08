@@ -3,14 +3,27 @@ import { withRouter } from "react-router";
 import app from "./base";
 import "./styles/login.css"
 
+
+
 const Signup = ({ history }) => {
     const handleSignup = useCallback(async event => {
+        const Parse = require('parse/node')
+        Parse.initialize('JalVFLmjJDUBqZ0hN9FyYbhbv2LHAaPIPLbKTuPp','2XXaKQbVcvXoq0XxyjCIhetuwv2dmoWTNVU4kDG6')
+        Parse.serverURL = 'https://parseapi.back4app.com'
         event.preventDefault();
+
+        //this is used to create a new instance of Parse User in Parse DB/no relation to Firebase
+        const user = new Parse.User();
+
         const { email, password } = event.target.elements;
+  
         try {
             await app
                 .auth()
                 .createUserWithEmailAndPassword(email.value, password.value);
+                user.set("username" , email.value)
+                user.set("password", password.value)
+                user.signUp();
             history.push("/");
 
         } catch (error) {

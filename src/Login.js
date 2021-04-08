@@ -9,7 +9,14 @@ const Login = ({ history }) => {
     const handleLogin = useCallback(
         async event => {
             event.preventDefault();
+            const Parse = require('parse/node')
+            Parse.initialize('JalVFLmjJDUBqZ0hN9FyYbhbv2LHAaPIPLbKTuPp','2XXaKQbVcvXoq0XxyjCIhetuwv2dmoWTNVU4kDG6')
+            Parse.serverURL = 'https://parseapi.back4app.com'
+
+
             const { email, password } = event.target.elements;
+            const user = Parse.User.logIn(email.value, password.value);
+
             try {
                 await app
                     .auth()
