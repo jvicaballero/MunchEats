@@ -10,7 +10,7 @@ const Login = ({ history }) => {
         async event => {
             event.preventDefault();
             const Parse = require('parse/node')
-            Parse.initialize('JalVFLmjJDUBqZ0hN9FyYbhbv2LHAaPIPLbKTuPp','2XXaKQbVcvXoq0XxyjCIhetuwv2dmoWTNVU4kDG6')
+            Parse.initialize('JalVFLmjJDUBqZ0hN9FyYbhbv2LHAaPIPLbKTuPp', '2XXaKQbVcvXoq0XxyjCIhetuwv2dmoWTNVU4kDG6')
             Parse.serverURL = 'https://parseapi.back4app.com'
 
 
@@ -53,7 +53,7 @@ const Login = ({ history }) => {
                         <h5>Email</h5>
                         <input type="email" className="form-control textField" name="email" />
                         <h5 className="mt-4">Password</h5>
-                        <input type="password" class="form-control textField" name="password" />
+                        <input type="password" className="form-control textField" name="password" />
                     </div>
 
                     <div className="d-flex flex-column mt-5 text-center">
