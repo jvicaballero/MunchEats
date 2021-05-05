@@ -2,6 +2,7 @@ import React, { useCallback, useContext } from "react";
 import { withRouter, Redirect } from "react-router";
 import app from "./base.js";
 import "./styles/login.css";
+import { notification } from 'antd';
 import { AuthContext } from "./Auth";
 // import Signup from "./Signup";
 
@@ -22,9 +23,10 @@ const Login = ({ history }) => {
                     .auth()
                     .signInWithEmailAndPassword(email.value, password.value);
                 history.push("/");
+                openNotification('success', 'Successfully signed in', '')
 
             } catch (error) {
-                alert(error);
+                openNotification('error', 'Sign in Failed', 'The email or password is incorrect. Please try again')
             }
         }, [history]
     );
@@ -34,6 +36,12 @@ const Login = ({ history }) => {
     if (currentUser) {
         return <Redirect to="/" />
     }
+    const openNotification = (type, feedback, content) => {
+        notification[type]({
+            message: feedback,
+            description: content
+        });
+    };
 
     return (
         <div>
@@ -48,17 +56,17 @@ const Login = ({ history }) => {
 
 
             <div className="loginContainer p-5">
-                <form className="d-flex flex-column" onSubmit={handleLogin}>
+                <form className="d-flex flex-column loginform" onSubmit={handleLogin}>
                     <div>
                         <h5>Email</h5>
-                        <input type="email" className="form-control textField" name="email" />
+                        <input id="email" type="email" className="form-control textField" name="email" />
                         <h5 className="mt-4">Password</h5>
-                        <input type="password" className="form-control textField" name="password" />
+                        <input id="password" type="password" className="form-control textField" name="password" />
                     </div>
 
                     <div className="d-flex flex-column mt-5 text-center">
-                        <button style={{ fontSize: "19px" }} className="textField bg-info" type="submit">Login</button>
-                        <p className="mt-2">Dont have an Account?  <a style={{ cursor: "pointer", color: "blue" }} onClick={() => history.push('/signup')}>Sign Up</a> </p>
+                        <button id="submitbtn" style={{ fontSize: "19px" }} className="textField bg-info" type="submit">Login</button>
+                        <p className="mt-2">Dont have an Account?  <a id="signupLink" style={{ cursor: "pointer", color: "blue" }} onClick={() => history.push('/signup')}>Sign Up</a> </p>
                     </div>
                 </form>
             </div>
