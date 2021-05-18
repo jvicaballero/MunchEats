@@ -2,6 +2,7 @@ import React from 'react'
 import app from "./base";
 import { Layout, Menu, Input } from 'antd';
 import { UserOutlined, ShoppingCartOutlined, LogoutOutlined } from '@ant-design/icons';
+import { Link } from "react-router-dom";
 
 const { Header } = Layout;
 const { SubMenu } = Menu;
@@ -13,7 +14,7 @@ const NavBar = () => {
             <Layout className="layout">
                 <Header className="d-flex justify-content-between">
                     <div className="d-flex justify-content-center align-items-center">
-                        <div className="logo1" />
+                        <Link to=""><div className="logo1" /></Link>
                         <h6 className="text-white mx-2">Munch Eats</h6>
                     </div>
                     <div className="d-flex">
