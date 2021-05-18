@@ -15,20 +15,18 @@ const { Meta } = Card;
 const RestaurantView = (props) => {
     console.log(props.restaurant);
     console.log(props.menu);
-    var value = props.restaurant;
-    var items = props.menu;
-    console.log(items.menu_sections);
 
     return (
         <div className="BG">
             <Navbar />
-            {!props.loading ? (
+            {!props.loading && !props.loading2 ? (
                 <div>
-                    {value && items ? ( 
+                    {props.restaurant && props.menu ? ( 
                         <div>
-                            {items.menu_name}
+                            {props.menu.menu_name}
                             <br></br>
-                            {items.menu_sections && items.menu_sections.map((s) => {
+                            {props.menu.menu_sections && props.menu.menu_sections.map((s) => {
+                                return (
                                 <div key={s.section_name}>
                                     <h3>{s.section_name}</h3>
                                     <p>{s.description}</p>
@@ -40,7 +38,7 @@ const RestaurantView = (props) => {
                                         </div>
                                     )}
                                 </div>
-                            })}
+                            )})}
                         </div>
                     ) : 
                     <div style={{ height: "50vh" }} className="container d-flex justify-content-center align-items-center">

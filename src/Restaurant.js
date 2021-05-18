@@ -4,12 +4,13 @@ import axios from "axios";
 import RestaurantView from "./RestaurantView";
 
 class Restaurant extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       restaurant: [],
-      menu: [],
+      menu: {},
       loading: false,
+      loading2: false,
     };
   }
 
@@ -18,7 +19,7 @@ class Restaurant extends React.Component {
   }
 
   getRestaurant = (props) => {
-    this.setState({ loading: true });
+    this.setState({ loading: true, loading2: true });
 
     axios
       .get(
@@ -63,7 +64,7 @@ class Restaurant extends React.Component {
       )
       .then((res) => {
         console.log(res.data.data[0].menus[0]);
-        this.setState({ menu: res.data.data[0].menus[0], loading: false })
+        this.setState({ menu: res.data.data[0].menus[0], loading2: false })
         console.log(this.state.menu);
       })
       .catch((err) => {
@@ -78,6 +79,7 @@ class Restaurant extends React.Component {
             restaurant={this.state.restaurant}
             menu={this.state.menu}
             loading={this.state.loading}
+            loading2={this.state.loading2}
         ></RestaurantView>
       </div>
     );
