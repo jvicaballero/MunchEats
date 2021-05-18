@@ -1,8 +1,7 @@
 import React from "react";
 import axios from "axios";
 import "./styles/home.css";
-import HomeView from "./HomeView"
-
+import HomeView from "./HomeView";
 
 class Home extends React.Component {
   constructor() {
@@ -62,6 +61,28 @@ class Home extends React.Component {
       .catch((err) => {
         console.log(err.response);
       });
+
+      // axios
+      //   .get(
+      //     'https://api.documenu.com/v2/restaurants/search/fields',
+      //     {
+      //       headers: {
+      //         'x-api-key': '57252e4269885f88fb92ae743fa700f8',
+      //       },
+      //       params: {
+      //         address: '4255 Amboy Rd',
+      //         zip_code: '10308',
+      //         state: 'NY',
+      //         fullmenu: 'true',
+      //       },
+      //     }
+      //   )
+      //   .then((res) => {
+      //     console.log(res.data.data[0]);
+      //   })
+      //   .catch((err) => {
+      //     console.log(err.response);
+      //   })
   };
 
   render() {
@@ -70,8 +91,8 @@ class Home extends React.Component {
         <HomeView
           restaurants={this.state.restaurants}
           loading={this.state.loading}
-          fastfood={this.state.fastfood}>
-        </HomeView>
+          fastfood={this.state.fastfood}
+        ></HomeView>
       </div>
     );
   }

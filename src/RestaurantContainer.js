@@ -1,6 +1,7 @@
 import React from 'react'
 import "./styles/home.css"
 import { Card, Rate } from 'antd';
+import { withRouter } from "react-router-dom";
 
 const { Meta } = Card;
 
@@ -13,7 +14,7 @@ const RestaurantContainer = (props) => {
                 <div class="row row-cols-1 row-cols-md-3 g-4">
                     {value &&
                         value.slice(0, 6).map((restaurant) => (
-                            <div class="col" key={restaurant.id}>
+                            <div class="col" key={restaurant.id} onClick={() => props.history.push(`/restaurant/${restaurant.name}/${restaurant.location.address1}/${restaurant.location.city}/${restaurant.location.state}/${restaurant.location.country}/${restaurant.location.zip_code}`)}>
                                 <Card
                                     className="Card"
                                     span={8}
@@ -60,4 +61,4 @@ const RestaurantContainer = (props) => {
         </div>
     )
 }
-export default RestaurantContainer;
+export default withRouter(RestaurantContainer);

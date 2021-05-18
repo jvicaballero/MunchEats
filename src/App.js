@@ -7,6 +7,7 @@ import { AuthProvider } from "./Auth"
 import PrivateRoute from "./PrivateRoute"
 import Login from "./Login";
 import Signup from "./Signup";
+import Restaurant from "./Restaurant"
 
 const Parse = require('parse/node')
 
@@ -24,6 +25,7 @@ function App() {
           <PrivateRoute exact path="/" component={Home} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/signup" component={Signup} />
+          <Route exact path="/restaurant/:name/:address1/:city/:state/:country/:zip_code" component={Restaurant} />
         </div>
       </Router>
     </AuthProvider>
