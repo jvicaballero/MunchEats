@@ -1,14 +1,19 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import app from "./base";
 import { Layout, Menu, Input } from 'antd';
 import { UserOutlined, ShoppingCartOutlined, LogoutOutlined } from '@ant-design/icons';
 import { Link } from "react-router-dom";
+import { CartContext } from './contexts/CartContext';
+import { CartIcon } from './icons';
+import './styles/navbar.css'
 
 const { Header } = Layout;
 const { SubMenu } = Menu;
 const { Search } = Input;
 
 const NavBar = () => {
+    const { itemCount } = useContext(CartContext);
+
     return (
         <div>
             <Layout className="layout">
@@ -27,6 +32,7 @@ const NavBar = () => {
                                 </Menu.ItemGroup>
                             </SubMenu>
                         </Menu>
+                        <Link to='/cart' class="cart-link"> <CartIcon/> Cart ({itemCount})</Link>
                     </div>
                 </Header>
             </Layout>

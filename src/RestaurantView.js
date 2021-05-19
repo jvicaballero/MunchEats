@@ -1,20 +1,25 @@
-import React from "react"
-import axios from "axios";
+import React, { useContext } from "react"
 import "./styles/home.css"
 import Navbar from "./Navbar"
-import { Card, Layout, Spin, Carousel } from 'antd';
+import { CartContext } from './contexts/CartContext';
+import { Layout, Spin } from 'antd';
+import { formatNumber } from './helpers/utils';
 
 const { Footer } = Layout;
-
-const imageStyle = {
-    height: '350px',
-    width: '100vw'
-}
-const { Meta } = Card;
 
 const RestaurantView = (props) => {
     console.log(props.restaurant);
     console.log(props.menu);
+
+    const { addProduct, cartItems, increase } = useContext(CartContext);
+
+    const isInCart = food => {
+        if (!!cartItems.find(item => item.name === food.name)) {
+            increase(food);
+        } else {
+            addProduct(food);
+        }
+    }
 
     return (
         <div className="BG">
@@ -31,11 +36,11 @@ const RestaurantView = (props) => {
                                             <h3>{s.section_name}</h3>
                                             <p>{s.description}</p>
                                             {s.menu_items.length > 0 && s.menu_items.map((food) =>
-                                                <div className="border border-2 border-dark rounded-pill mb-3 p-2" key={food.name}>
+                                                <div className="border border-2 border-dark rounded-pill mb-3 p-2 div-hover" key={food.name} onClick={() => isInCart(food)}>
                                                     <div className="mx-4">
                                                         <h5>{food.name}</h5>
                                                         <p>{food.description}</p>
-                                                        <p>{food.price}</p>
+                                                        <p>{formatNumber(food.price)}</p>
                                                     </div>
                                                 </div>
                                             )}
