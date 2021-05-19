@@ -28,11 +28,10 @@ const NavBar = () => {
                             <SubMenu key="SubMenu" icon={<UserOutlined style={{ fontSize: '23px' }} />} title="Account">
                                 <Menu.ItemGroup>
                                     <Menu.Item key="setting:1" onClick={() => app.auth().signOut()} icon={<LogoutOutlined style={{ fontSize: '23px' }} />}>Sign Out</Menu.Item>
-                                    <Menu.Item key="setting:2" icon={<ShoppingCartOutlined style={{ fontSize: '23px' }} />}>View Cart</Menu.Item>
                                 </Menu.ItemGroup>
                             </SubMenu>
                         </Menu>
-                        <Link to='/cart' class="cart-link"> <CartIcon/> Cart ({itemCount})</Link>
+                        <Link to='/cart' class="cart-link"> <CartIcon /> Cart ({itemCount})</Link>
                     </div>
                 </Header>
             </Layout>

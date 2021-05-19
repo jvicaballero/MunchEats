@@ -49,6 +49,15 @@
 .div-hover:hover {
   background-color: #aaa;
 }
+.div-hover:hover > .add_to_cart_notif {
+  visibility: visible;
+}
+.add_to_cart_notif{
+  width:105px;
+  height:auto;
+  background-color: red;
+  visibility: hidden;
+}
 
 @media screen and (max-width: 882px){
   .homeBanner1{
