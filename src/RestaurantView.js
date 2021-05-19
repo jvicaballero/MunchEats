@@ -2,8 +2,9 @@ import React, { useContext } from "react"
 import "./styles/home.css"
 import Navbar from "./Navbar"
 import { CartContext } from './contexts/CartContext';
-import { Layout, Spin } from 'antd';
+import { Layout, Spin, notification } from 'antd';
 import { formatNumber } from './helpers/utils';
+import { ShoppingCartOutlined, SmileOutlined } from '@ant-design/icons';
 
 const { Footer } = Layout;
 
@@ -19,7 +20,16 @@ const RestaurantView = (props) => {
         } else {
             addProduct(food);
         }
+        openNotification(food.name);
     }
+
+    const openNotification = (name) => {
+        notification.open({
+            message: name,
+            description: 'Added to Cart',
+            icon: <SmileOutlined style={{ color: '#FFA500' }} />,
+        });
+    };
 
     return (
         <div className="BG">
@@ -36,11 +46,14 @@ const RestaurantView = (props) => {
                                             <h3>{s.section_name}</h3>
                                             <p>{s.description}</p>
                                             {s.menu_items.length > 0 && s.menu_items.map((food) =>
-                                                <div className="border border-2 border-dark rounded-pill mb-3 p-2 div-hover" key={food.name} onClick={() => isInCart(food)}>
+                                                <div className="border border-2 border-dark rounded-pill mb-3 p-2 div-hover d-flex justify-content-between" key={food.name} onClick={() => isInCart(food)}>
                                                     <div className="mx-4">
                                                         <h5>{food.name}</h5>
                                                         <p>{food.description}</p>
                                                         <p>{formatNumber(food.price)}</p>
+                                                    </div>
+                                                    <div className="add_to_cart_notif d-flex justify-content-center align-items-center rounded-pill">
+                                                        <ShoppingCartOutlined style={{ fontSize: '50px', color: '#fff' }} />
                                                     </div>
                                                 </div>
                                             )}

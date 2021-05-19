@@ -6,7 +6,7 @@
 
 .BG-cart {
   background: transparent linear-gradient(180deg, #CBF1FF 0%, #F9E8B1 100%);
-  height: auto;
+  height: 100vh;
 }
 
 .add-item {
@@ -31,4 +31,9 @@
 
 .product-buttons button svg {
     width: 20px;
+}
+
+.test1{
+    height: 500px;
+    overflow: auto;
 }
